@@ -1,0 +1,64 @@
+<div class="d-flex vh-100">
+  <!-- Sidebar -->
+  <nav
+    class="sidebar bg-dark text-white p-3"
+    *ngIf="!isLoginOrRegisterPage()"
+  >
+    <!-- Sidebar content (same as before) -->
+    <a class="navbar-brand mb-4" routerLink="/home">Blogo Pedia</a>
+
+    <ul class="navbar-nav flex-column">
+      <li class="nav-item mb-2" *ngIf="isSuspended" style="margin-top: 4rem;">
+        <a class="nav-link" routerLink="/suspended" routerLinkActive="active-link">Suspended</a>
+      </li>
+
+      <li class="nav-item mb-2" *ngIf="!isSuspended">
+        <a class="nav-link" routerLink="/home" routerLinkActive="active-link">Home</a>
+      </li>
+      <li class="nav-item mb-2" *ngIf="!isSuspended">
+        <a class="nav-link" routerLink="/my-blogs" routerLinkActive="active-link">My Blogs</a>
+      </li>
+      <li class="nav-item mb-2" *ngIf="isAdmin || isSuperAdmin">
+        <a class="nav-link" routerLink="/adminPanel" routerLinkActive="active-link">
+          {{ isAdmin ? 'Admin' : 'Super Admin' }}
+        </a>
+      </li>
+      <li class="nav-item mb-2" *ngIf="userName">
+        <a class="nav-link position-relative" routerLink="/notify" routerLinkActive="active-link" (click)="setBadgeCount()">Notification
+          @if(badgeCount>0){
+          <span class="position-absolute start-99 translate-middle badge rounded-pill bg-primary">
+            {{ badgeCount }}
+            <span class="visually-hidden">unread messages</span>
+          </span>
+          }
+        </a>
+      </li>
+    </ul>
+
+    <a class="penImg mt-auto mb-3" routerLink="/createBlog" routerLinkActive="bold" *ngIf="!isSuspended">
+      <!-- Icon and label -->
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+        class="bi bi-pen" viewBox="0 0 16 16">
+        <path
+          d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001m-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708z" />
+      </svg>
+      <p class="text-white">Write</p>
+    </a>
+
+    <div class="text-white mb-4 text-center" style="margin:1rem;">
+      <h6 class="text-wrap" style="font-family: Syne,sans-serif;">Welcome {{ userName }}</h6>
+    </div>
+
+    @if(userName) {
+    <button class="btn btn-danger logout-btn" (click)="logout()">Logout</button>
+    } @else {
+    <button class="btn btn-primary signIn-btn" (click)="signIn()">Sign In</button>
+    }
+  </nav>
+
+  <!-- Main Content -->
+  <div class="main-content flex-grow-1 p-3">
+    <router-outlet></router-outlet>
+  </div>
+</div>
+

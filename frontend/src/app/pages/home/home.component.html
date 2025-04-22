@@ -1,0 +1,33 @@
+<div class="home-container">
+  <div class="search-container">
+    <input
+      type="text"
+      placeholder="Search by title or author name..."
+      [(ngModel)]="searchTerm"
+      (input)="filterBlogs()"
+    />
+    <select aria-label="label for the select" [(ngModel)]="sortBy" (change)="sortBlogs()" >
+      <option value="recent">Sort by Recent</option>
+      <option value="oldest">Sort by Oldest</option>
+    </select>
+  </div>
+
+  <div *ngIf="filteredBlogs.length > 0; else noBlogs" class="blog-list">
+    <div
+      *ngFor="let blog of filteredBlogs"
+      class="blog-post"
+      (click)="navigateToBlog(blog._id)"
+    >
+      <h3 style="font-family: Syne, sans-serif ;">{{ blog.title }}</h3>
+
+      
+      <p><strong>Author:</strong> {{ blog.authorName }}</p>
+      <p><small>Published on: {{ blog.createdAt | date: 'MMM d, y, h:MM a' }}</small></p>
+    </div>
+    
+  </div>
+
+  <ng-template #noBlogs>
+    <p>No blogs available. Please check back later!</p>
+  </ng-template>
+</div>

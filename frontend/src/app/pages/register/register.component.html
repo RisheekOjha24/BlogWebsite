@@ -1,0 +1,142 @@
+<section>
+  <div class="container-fluid h-custom">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-md-9 col-lg-6 col-xl-5">
+        <img
+          src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
+          class="img-fluid"
+          alt="Sample image"
+        />
+      </div>
+      <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+        <form [formGroup]="userForm" class="register-form">
+          <div class="divider d-flex align-items-center my-4">
+            <p class="text-center fw-bold mx-3 mb-0 authHead">Register</p>
+          </div>
+
+          <!-- Username input -->
+          <div data-mdb-input-init class="form-outline mb-4">
+            <label class="form-label" for="form3Example3">Username</label>
+            <input
+              type="text"
+              id="form3Example3"
+              class="form-control form-control-xl"
+              formControlName="name"
+              placeholder="Enter username"
+            />
+            <div class="text-danger mt-2" *ngIf="userForm.controls['name'].touched">
+              @if(userForm.controls['name'].errors?.['required']) {
+                <span>Username is Required</span>
+              }
+              @else if(userForm.controls['name'].errors?.['minlength']) {
+                <span>Min character 4 required</span>
+              }
+            </div>
+          </div>
+
+          <!-- Email input -->
+          <div data-mdb-input-init class="form-outline mb-4">
+            <label class="form-label" for="form3Example8">Email address</label>
+            <input
+              type="email"
+              id="form3Example8"
+              class="form-control form-control-xl"
+              placeholder="Enter a valid email address"
+              formControlName="email"
+            />
+            <div class="text-danger mt-2" *ngIf="userForm.controls['email'].touched">
+              @if(userForm.controls['email'].errors?.['required']) {
+                <span>Email is Required</span>
+              }
+              @else if(userForm.controls['email'].errors?.['email']) {
+                <span>Enter a valid email</span>
+              }
+            </div>
+          </div>
+
+          <!-- Password input -->
+          <div data-mdb-input-init class="form-outline mb-3">
+            <label class="form-label" for="form3Example4">Password</label>
+            <input
+              type="password"
+              id="form3Example4"
+              class="form-control form-control-xl"
+              placeholder="Enter password"
+              formControlName="password"
+      
+            />
+            @if(userForm.controls['password'].touched){
+            <div class="text-danger mt-2" >
+              @if(userForm.controls['password'].errors?.['minlength']) {
+                <span>Password should be minimum 6 characters</span>
+              }
+            </div>
+          }
+
+            <!-- Password Criteria Indicators -->
+            @if(userForm.controls['password'].touched){
+            <div class="password-criteria">
+              <div [ngClass]="{'text-success': isUppercaseValid, 'text-danger': !isUppercaseValid}">
+                At least one uppercase letter
+                <mat-icon class="mat-icon-circle">{{ isUppercaseValid ? 'check_circle' : 'cancel' }}</mat-icon>
+              </div>
+              <div [ngClass]="{'text-success': isLowercaseValid, 'text-danger': !isLowercaseValid}">
+                At least one lowercase letter
+                <mat-icon class="mat-icon-circle">{{ isLowercaseValid ? 'check_circle' : 'cancel' }}</mat-icon>
+              </div>
+              <div [ngClass]="{'text-success': isNumberValid, 'text-danger': !isNumberValid}">
+                At least one number
+                <mat-icon class="mat-icon-circle">{{ isNumberValid ? 'check_circle' : 'cancel' }}</mat-icon>
+              </div>
+              <div [ngClass]="{'text-success': isSpecialCharValid, 'text-danger': !isSpecialCharValid}">
+                At least one special character
+                <mat-icon class="mat-icon-circle">{{ isSpecialCharValid ? 'check_circle' : 'cancel' }}</mat-icon>
+              </div>
+            </div>
+          }
+          
+        </div>
+       
+
+          <!-- Confirm Password input -->
+          <div data-mdb-input-init class="form-outline mb-3">
+            <label class="form-label" for="form3Example5">Confirm Password</label>
+            <input
+              type="password"
+              id="form3Example5"
+              class="form-control form-control-xl"
+              placeholder="Enter password"
+              formControlName="confirmPassword"
+            />
+            <div class="text-danger mt-2" *ngIf="userForm.controls['confirmPassword'].touched">
+              @if(userForm.controls['confirmPassword'].errors?.['required']) {
+                <span>Confirm Password is Required</span>
+              }
+              @else if(passwordsDoNotMatch()) {
+                <span>Passwords do not match</span>
+              }
+            </div>
+          </div>
+
+          <!-- Register button and login link -->
+          <div class="text-center text-lg-start mt-4 pt-2">
+            <button
+              type="button"
+              data-mdb-button-init
+              data-mdb-ripple-init
+              class="btn btn-primary btn-lg"
+              style="padding-left: 1rem; padding-right: 1rem; font-size: 16px;"
+              (click)="onSubmit()"
+            >
+              Register
+            </button>
+            <p class="fw-bold mt-2 pt-1 mb-0">
+              Already Registered?
+              <a class="link-danger" routerLink="/login">Log In</a>
+            </p>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

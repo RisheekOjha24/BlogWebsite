@@ -1,0 +1,84 @@
+<div class="container my-5">
+  <!-- Search Bar -->
+  <div class="input-group mb-3">
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Search by title or author"
+      [(ngModel)]="searchTerm"
+      (input)="onSearchChange()"
+    />
+    <span class="input-group-text">
+      <i class="fas fa-search"></i>
+    </span>
+  </div>
+
+  <!-- Sort Dropdown -->
+  <div class="mb-3">
+    <select
+      id="sortOptions"
+      aria-label="wo"
+      class="form-select"
+      [(ngModel)]="selectedSortOption"
+      (change)="onSortChange()"
+      style="max-width: 180px;"
+    >
+    <option value="recent">Latest</option>
+    <option value="approved">Approved</option>
+      <option value="pending">Pending Approval</option>
+    </select>
+  </div>
+
+  <!-- Blog Management Table -->
+  <table class="table table-striped table-bordered dfl">
+    <thead class="text-center">
+      <tr>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Published On</th>
+        <th>Status</th>
+        <th class="text-center">Actions</th>
+      </tr>
+    </thead>
+    <tbody class="text-center align-middle">
+      <tr *ngFor="let blog of filteredBlogs">
+        <td style="max-width: 200px;">{{ blog.title }}</td>
+        <td>{{ blog.authorName }}</td>
+        <td>{{ blog.createdAt | date: 'mediumDate' }}</td>
+        <td>{{ blog.approved ? 'Approved' : 'Pending' }}</td>
+        <td>
+              <button
+            class="casual-btn btn-view"
+            (click)="viewBlog(blog._id)"
+          >
+            View
+          </button>
+        @if(!blog.approved){
+          <button
+            class="casual-btn btn-approve"
+            (click)="approveBlog(blog)" 
+          >
+            Approve
+          </button>
+        }@else {
+         <button
+            class="casual-btn btn-reject"
+            (click)="rejectBlog(blog)" 
+          >
+            Reject
+          </button>
+        }
+        <button
+            class="casual-btn delete-btn"
+            (click)="deleteBlog(blog._id)"
+          >
+          Delete
+        </button>
+        </td>
+      </tr>
+      <tr *ngIf="filteredBlogs.length === 0">
+        <td colspan="5" class="text-center">No blogs found!</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,56 @@
+<div class="container mt-4">
+  <form [formGroup]="blogForm" (ngSubmit)="onSubmit()">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+          <h4 style="font-family: Syne;font-weight: bold;">Edit Blog</h4>
+          <button type="submit" class="btn btn-primary" [disabled]="blogForm.invalid">Save Edit</button>
+      </div>
+
+      <!-- Title -->
+      <div class="mb-3">
+          <label for="title" class="form-label">Blog Title</label>
+          <input
+              type="text"
+              id="title"
+              formControlName="title"
+              class="form-control"
+              placeholder="Enter the title of your blog"
+          />
+          <div *ngIf="blogForm.get('title')?.invalid && blogForm.get('title')?.touched" class="text-danger">
+              Title is required.
+          </div>
+      </div>
+
+      <!-- Image Upload -->
+      <div class="mb-3">
+          <label for="imageUpload" class="form-label">Upload Image</label>
+          <input
+              type="file"
+              id="imageUpload"
+              (change)="onImageUpload($event)"
+              class="form-control"
+              accept="image/*"
+          />
+
+          <div *ngIf="imageUrl" class="mt-2">
+              <p class="preview">Preview:</p>
+              <div class="w-100 d-flex justify-content-center align-items-center">
+                  <img [src]="imageUrl" alt="Uploaded Image" class="img-thumbnail" style="min-height:250px; max-width: 100%; object-fit: cover;" />
+                  <button type="button" class="btn btn-danger ms-2" (click)="removeImage()">Remove</button>
+              </div>
+          </div>
+      </div>
+
+      <!-- Text Editor for Content -->
+      <div class="mb-3">
+          <label for="content" class="form-label">Blog Content</label>
+          <quill-editor
+              formControlName="content"
+              placeholder="Write your blog content here..."
+              style="height: 300px; max-width: 100%;">
+          </quill-editor>
+          <div *ngIf="blogForm.get('content')?.invalid && blogForm.get('content')?.touched" class="text-danger">
+              Content is required.
+          </div>
+      </div>
+  </form>
+</div>

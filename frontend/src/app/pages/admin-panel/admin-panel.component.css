@@ -1,0 +1,11 @@
+.active{
+    background-color:#002D62 !important;
+    color: white;
+    border-radius: 0;
+    border: 1px solid black;
+}
+
+.inactive{
+    background-color: rgb(216, 223, 221);
+        border-radius: 0;
+}

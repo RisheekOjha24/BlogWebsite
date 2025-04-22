@@ -1,0 +1,50 @@
+<div class="container my-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8" *ngIf="blogs.length>0; else noBlogs">
+
+      <div class="searchSort">
+
+        <!-- Search Bar -->
+        <div class="input-group mb-3 searchBar">
+          <input
+          type="text"
+          class="form-control"
+          placeholder="Search by title"
+          [(ngModel)]="searchTerm"
+          (input)="filterBlogs()"
+          />
+          
+        </div>
+        
+        <!-- Sort Options -->
+        <div class="mb-3">
+          <select aria-label="wwo" class="form-select sortIt" id="sortBy" [(ngModel)]="sortBy" (change)="sortBlogs()">
+            <option value="recent">Most Recent</option>
+            <option value="oldest">Oldest</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row blog-container">
+        <div *ngFor="let blog of filteredBlogs" class="col-md-12 mb-4 singleBlog">
+          <div class="card shadow-sm">
+            <div class="card-body">
+              <h5 class="card-title">{{ blog.title }}</h5>
+              <p class="card-text text-muted">{{ blog.createdAt | date: 'MMM d, y, h:mm a' }}</p>
+              <div class="button-container">
+                <a class="btn btn-primary btn-view" (click)="navigateToView(blog._id)">View</a>
+                <a class="btn btn-primary edit-btn" (click)="navigateToEdit(blog._id)">Edit</a>
+                <a class="btn btn-primary delete-btn" (click)="navigateToDelete(blog._id)">Delete</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+      <ng-template #noBlogs>
+        <h4 style="font-family:Syne,sans-serif;">Looks like you haven't published any blogs yet!  We'd love to hear your stories—start creating today </h4>
+
+        <ng-lottie [options]="options" (animationCreated)="animationCreated($event)" class="lottie-animation-box"/>
+      </ng-template>
+  </div>
+</div>

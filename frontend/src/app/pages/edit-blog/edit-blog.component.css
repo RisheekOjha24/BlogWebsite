@@ -1,0 +1,27 @@
+
+label{
+    font-family:  Montserrat;
+    font-weight: 600;
+  }
+  .container {
+    max-width: 650px;
+  }
+  .margin-btn{
+    margin-bottom: 2rem;
+  }
+  .text-danger{
+    font-family: monospace
+  }
+  .form-container{
+    margin-bottom: 10rem;
+  }
+  
+  h4 {
+    margin-bottom: 20px; 
+  }
+  
+  .preview{
+    font-family:'Montserrat';
+    font-weight: 600;
+    font-size: 18px;
+  }

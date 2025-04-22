@@ -1,0 +1,107 @@
+.content {
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+p{
+  font-family:Helvetica, sans-serif;
+  font-size: 18px;
+}
+.card-footer {
+  background-color: #f9f9f9;
+}
+
+.card-title {
+  font-weight: bolder;
+  font-family: "Roboto Slab",Helvetica, sans-serif;
+  font-size: 42px;
+  line-height: 1.2;
+}
+
+.media {
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+}
+
+.img-fluid{
+    margin:auto;
+    margin-bottom: 4rem;
+    margin-top: 1rem;
+}
+.btn-like-comment{
+  display: flex;
+  position: absolute;
+  flex-direction: column;
+  align-items: center;
+  min-width: 30px;
+  justify-content: space-between;
+}
+.like-btn{
+  border: none;
+  padding: 2px;
+  background-color: white;
+  font-size: 20px;
+  font-family: sans-serif;
+  margin: 1rem;
+}
+.like-btn:hover{
+  cursor: pointer;
+}
+.like-btn>i{
+  margin-right:6px;
+ }
+
+ .commnet-icon{
+  font-size: 20px;
+  cursor: pointer;
+ }
+
+ #commentBox{
+  margin-top: 2rem;
+ }
+ 
+ .sendCommentBtn{
+  padding: 5px 20px;
+  background-color: rgb(50, 131, 163);
+  border: 0;
+  border-radius:6px;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  color: white;
+ }
+ 
+ .sendCommentBtn:hover{
+  transform: scale(1.02);
+  filter: brightness(1.1);
+ }
+  
+ .sendCommentBtn:active{
+  transform: scale(1);
+  filter: brightness(1);
+ }
+
+ .eye-icon{
+  font-size: 20px;
+  color: rgb(27, 109, 231);
+  cursor: pointer;
+}
+.active-eye-icon{
+   color: rgb(74, 74, 216);
+ }
+
+ .delComment{
+  font-size: 20px;
+  color: red;
+  cursor: pointer;
+ }
+ .delComment:hover{
+  transform: scale(1.1);
+ }
+
+ .visibleComment{
+  display: flex;
+  padding: 10px;
+  background-color: lemonchiffon;
+  justify-content: space-between;
+  align-items: center;
+ }

@@ -1,0 +1,69 @@
+<div class="btn-like-comment">
+<button class='like-btn' (click)="toggleLike()">
+  <i class="bi bi-hand-thumbs-up-fill" [ngClass]="{'bi-hand-thumbs-up': !isLiked,'text-primary': isLiked}"></i>
+  <span>{{ likesCount }}</span>
+</button>
+<i class="bi bi-chat commnet-icon" #commentIcon (click)="scrollToComment()"></i>
+</div>
+
+<div class="container my-5 d-flex justify-content-center">
+
+  <div  *ngIf="blog; else loading"  style="width: 800px;">
+
+      <h5 class="card-title text-center">{{blog.title }}</h5>   
+
+    <div class="d-flex justify-content-between align-items-center">
+        <img
+            *ngIf="blog.imageUrl"
+            [src]="blog.imageUrl"
+            alt="Blog Image"
+            class="img-fluid"
+            style="max-height:900px;width:80%; object-fit: cover;" 
+        />
+    </div>
+      <p [innerHTML]="blog.content" ></p>
+      <p class="text-muted">Author: {{blog.authorName }}</p>
+      <p class="text-muted">Published on {{blog.createdAt | date: 'longDate' }}</p>
+
+      <div id="commentBox" #commentBox>
+      
+        <div class="commentinput"> <textarea
+          class="form-control"
+          [(ngModel)]="content"
+          rows="1"
+          style="max-width: 500px;"
+          placeholder="Add a comment..."
+        ></textarea>
+        <button class="sendCommentBtn" (click)="submitComment()">Send</button>
+        </div>
+
+      <p style="font-size: 21px;">Comments ({{comments.length }})</p>
+      <ul *ngIf="comments.length > 0; else noComments" class="list-unstyled">
+        
+    
+        <i class="bi bi-eye eye-icon" (click)="toggleComment()" [class.active-eye-icon]="!isHideComment" >  {{isHideComment?'show comments':'hide comments'}}</i>
+
+        @if(!isHideComment){
+            <li *ngFor="let comment of comments" class="media my-3 visibleComment">
+              <div class="media-body">
+                <h6 class="mt-0 mb-1">{{ comment.authorName }}</h6>
+                <p>{{ comment.content }}</p>
+                <small class="text-muted">{{ comment.createdAt | date: 'MMM d, y, h:MM a' }}</small>
+              </div>
+              @if(comment.authorEmail===email || isAdmin || isSuperAdmin)
+              {
+                <i class="bi bi-trash delComment" (click)="delComment(comment._id)"></i>
+              }
+            </li>
+          }
+      </ul>
+      <ng-template #noComments>
+        <p>No comments yet</p>
+      </ng-template>
+    </div>
+  </div>
+
+  <ng-template #loading>
+    <p>Loading blog details...</p>
+  </ng-template>
+</div>

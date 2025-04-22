@@ -1,0 +1,112 @@
+<div class="container my-5">
+  <!-- Search Bar -->
+  <div class="input-group mb-3">
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Search by name or email"
+      [(ngModel)]="searchTerm" 
+      (input)="filterUsers()" 
+    />
+    <span class="input-group-text">
+      <i class="fas fa-search"></i>
+    </span>
+  </div>
+
+  <!-- Regular Users Table -->
+  <h5 class="syne">Regular Users</h5>
+  <table class="table table-striped table-bordered">
+    <thead class="text-center">
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Account Status</th>
+        <th class="text-center">Actions</th>
+      </tr>
+    </thead>
+    <tbody class="text-center">
+      <tr *ngFor="let user of regularUsers">
+        <td>{{ user.name }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.isSuspended ? 'Suspended' : 'Active' }}</td>
+        <td>
+          <button
+            class="casual-btn btn-suspend"
+            (click)="toggleAccUser(user)"
+            [ngClass]="user.isSuspended ? 'goActive' : 'btn-suspend'"
+          >
+            {{ user.isSuspended ? 'Activate Acc' : 'Suspend Acc' }}
+          </button>
+          <button class="casual-btn btn-msg" (click)="sendMessage(user._id)">Send Message</button>
+          <!-- Make Admin button for super admin users -->
+          <button
+            *ngIf="isCurrSuperAdmin"
+            class="casual-btn btn-make-admin"
+            (click)="makeAdmin(user)"
+          >
+            Make Admin
+          </button>
+        </td>
+      </tr>
+      <tr *ngIf="regularUsers.length === 0">
+        <td colspan="4" class="text-center">No regular users found!</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Admin Users Table -->
+  <h5 class="syne">Admin Users</h5>
+  <table class="table table-striped table-bordered">
+    <thead class="text-center">
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Account Status</th>
+
+        @if(isCurrSuperAdmin){
+        <th class="text-center" >Actions</th>
+        }
+
+      </tr>
+    </thead>
+    <tbody class="text-center">
+      <tr *ngFor="let user of adminUsers">
+        <td>{{ user.name }}</td>
+        <td>{{ user.email }}</td>
+        <td>Admin</td>
+        <!-- Revoke Admin button for super admin users -->
+        <td *ngIf="isCurrSuperAdmin">
+          <button
+              class="casual-btn btn-revoke-admin"
+            (click)="revokeAdmin(user)"
+          >
+            Revoke Admin Status
+          </button>
+        </td>
+      </tr>
+      <tr *ngIf="adminUsers.length === 0">
+        <td colspan="4" class="text-center">No admin users found!</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Super Admin Users Table -->
+  <h5 class="syne">Super Admin</h5>
+  <table class="table table-striped table-bordered">
+    <thead class="text-center">
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+      </tr>
+    </thead>
+    <tbody class="text-center">
+      <tr *ngFor="let user of superAdminUsers">
+        <td>{{ user.name }}</td>
+        <td>{{ user.email }}</td>
+      </tr>
+      <tr *ngIf="superAdminUsers.length === 0">
+        <td colspan="2" class="text-center">No super admin users found!</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

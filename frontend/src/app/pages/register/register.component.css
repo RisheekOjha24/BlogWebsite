@@ -1,0 +1,36 @@
+
+.divider:after,
+.divider:before {
+content: "";
+flex: 1;
+height: 1px;
+background: #eee;
+}
+label{
+  font-family:  Calibri;
+  font-weight: 600;
+}
+.register-form{
+  margin-bottom: 5rem;
+}
+.text-danger{
+  font-family:Montserrat;
+  font-weight: 500;
+  font-size: 14px;
+}
+.mat-icon-circle{
+  font-size: 15px;
+  vertical-align: middle;
+  transform: translateY(4px);
+}
+
+.h-custom {
+height: calc(100% - 73px);
+}
+@media (max-width: 450px) {
+.h-custom {
+height: 100%;
+}
+}
+
+

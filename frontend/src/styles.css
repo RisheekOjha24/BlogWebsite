@@ -1,0 +1,32 @@
+@import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+@import "../node_modules/bootstrap-icons/font/bootstrap-icons.css";
+@import "../node_modules/sweetalert2/dist/sweetalert2.min.css";
+
+@import "../node_modules/quill/dist/quill.snow.css";
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Syne:wght@400..800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Anton&family=Rubik+Wet+Paint&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.authHead {
+  font-size: 25px;
+}
+.custom-swal-title-notify {
+  font-size: 20px !important;
+  font-family: "Lucida Sans", "Lucida Sans Regular", Geneva, Verdana, sans-serif;
+}
+.custom-swal-title-alert {
+  font-size: 20px !important;
+  font-family: "Lucida Sans", "Lucida Sans Regular", Geneva, Verdana, sans-serif;
+  font-weight: bold;
+}
+
+.custom-swal-text {
+  font-size: 16px !important;
+  line-height: 1.4;
+}

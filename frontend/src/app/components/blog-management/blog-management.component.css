@@ -1,0 +1,48 @@
+.container{
+    font-family:sans-serif,Georgia, 'Times New Roman', Times, serif;
+}
+.casual-btn{
+    font-family:Montserrat;
+    margin-right: 1.5rem;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 4px 8px;
+    border: 1px solid black;
+    border-radius: 4px;
+    box-shadow: 2px 2px 2px black;
+}
+.btn-suspend{
+    background-color: rgb(234, 39, 39);
+    color: white;
+    margin:0 1rem;
+  
+}
+input{
+    font-family:Georgia, 'Times New Roman', Times, serif;
+}
+.casual-btn:active{
+    transform: scale(0.94);
+}
+.btn-approve{
+    background-color: rgb(33, 113, 142);
+    color: white;
+}
+.btn-reject{
+    background-color: rgb(173, 155, 21);
+    color: white;
+    padding-right: 16px;
+    padding-left: 16px;
+}
+.btn-view{
+  background-color: #ff4500;
+  border-color: #ff4500;
+  color: white;
+}
+.delete-btn{
+    background-color: #CC2B52;
+    border-color: #CC2B52;
+    color: white;
+  }
+.syne{
+    font-family:sans-serif;
+}

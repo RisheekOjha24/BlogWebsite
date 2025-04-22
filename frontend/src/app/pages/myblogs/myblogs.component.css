@@ -1,0 +1,68 @@
+.container {
+  max-width: 800px; /* Limit max width for a centered look */
+}
+
+.card-title {
+  font-weight: bold;
+}
+
+.card-text {
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.btn-view{
+  background-color: #ff4500;
+  border-color: #ff4500;
+  color: white;
+}
+
+.btn-primary-view:hover {
+  background-color: #ff5722;
+  border-color: #ff5722;
+}
+
+input:focus{
+  border: 2px solid black;
+}
+.lottie-animation-box{
+  width:400px;
+}
+.button-container{
+  display: flex;
+  gap:20px;
+}
+
+.edit-btn{
+  background-color: #133E87;
+  text-align: center;
+  padding-left: 19px;
+  padding-right: 19px;
+  border-color: #133E87;
+}
+.sortIt{
+  width: 140px;
+}
+.delete-btn{
+  background-color: #CC2B52;
+  border-color: #CC2B52;
+}
+.singleBlog{
+  transition: all 0.4s ease;
+  margin-top: 1.5rem;
+}
+.singleBlog:hover{
+  padding-bottom: 10px;
+  background-color: #006A67;
+  transform: scale(1.01);
+}
+
+.searchSort{
+  display: flex;
+  width: 600px !important;
+}
+
+.searchBar{
+  height: 20px;
+  margin-right: 1rem;
+}
