@@ -1,38 +1,38 @@
-.container{
-    font-family: Georgia, 'Times New Roman', Times, serif;
+.container {
+  font-family: Georgia, "Times New Roman", Times, serif;
 }
-.casual-btn{
-    font-family:Montserrat;
-    font-size: 14px;
-    font-weight: 500;
-    padding: 4px;
-    border-radius: 4px;
-    border: 1px solid black;
-    box-shadow: 2px 2px 2px black;
+.casual-btn {
+  font-family: Montserrat;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 4px;
+  border-radius: 4px;
+  border: 1px solid black;
+  box-shadow: 2px 2px 2px black;
 }
-.btn-suspend{
-    background-color: rgb(234, 39, 39);
-    color: white;
-    margin:0 1rem;
-  
+.btn-suspend {
+  background-color: rgb(234, 39, 39);
+  color: white;
+  margin: 0 1rem;
 }
-.goActive{
-    background-color:rgb(10, 139, 120) ;
-    margin:0 1rem;
+.goActive {
+  background-color: rgb(10, 139, 120);
+  margin: 0 1rem;
 }
-.btn-msg{
-    background-color: #c2ddcb;
-    margin:0 1rem;
+.btn-msg {
+  background-color: #c2ddcb;
+  margin: 0 1rem;
 }
-.btn-make-admin{
-    margin:0 1rem;
+.btn-make-admin {
+  margin: 0 1rem;
 }
-.casual-btn:active{
-    transform: scale(0.94);
+.casual-btn:active {
+  transform: scale(0.94);
 }
-.syne{
-    font-family:Cambria, Cochin, Georgia;
+.syne {
+  font-family: Cambria, Cochin, Georgia;
 }
-table{
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+table {
+  font-family: "Montserrat", "Arial Narrow", Arial, sans-serif;
+  font-weight: bolder;
 }

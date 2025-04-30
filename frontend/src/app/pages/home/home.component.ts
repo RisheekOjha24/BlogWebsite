@@ -12,7 +12,6 @@ import { Router } from '@angular/router';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
-  
   blogService = inject(BlogService);
   blogs: any[] = [];
   filteredBlogs: any[] = []; // Array for filtered blogs
@@ -21,12 +20,10 @@ export class HomeComponent implements OnInit {
   private router = inject(Router);
 
   ngOnInit(): void {
-    const user= localStorage.getItem('user');
-    if(user)
-    {
-     const userData=JSON.parse(user);
-     if(userData.isSuspended)
-      this.router.navigateByUrl('/suspended');
+    const user = localStorage.getItem('user');
+    if (user) {
+      const userData = JSON.parse(user);
+      if (userData.isSuspended) this.router.navigateByUrl('/suspended');
     }
     this.fetchBlogs();
   }
@@ -34,7 +31,7 @@ export class HomeComponent implements OnInit {
   fetchBlogs(): void {
     this.blogService.getAllBlogs().subscribe({
       next: (data) => {
-        this.blogs = data.filter((blog)=>blog.approved===true);
+        this.blogs = data.filter((blog) => blog.approved === true);
         this.filteredBlogs = this.blogs; // Initialize filtered blogs
         this.sortBlogs();
       },
@@ -54,13 +51,12 @@ export class HomeComponent implements OnInit {
   }
 
   sortBlogs(): void {
-  if (this.sortBy === 'oldest'){
+    if (this.sortBy === 'oldest') {
       this.filteredBlogs.sort(
         (a, b) =>
           new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
       );
-    }
-    else {
+    } else {
       this.filteredBlogs.sort(
         (a, b) =>
           new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()

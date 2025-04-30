@@ -27,28 +27,34 @@ export class BlogService {
   }
 
   // Send the formData to the backend
-  createNewBlog(formData:FormData):Observable<any>{
+  createNewBlog(formData: FormData): Observable<any> {
     return this.http.post<any>(`${this.baseUrl}/newblog`, formData);
   }
 
-  deleteBlogById(blogId:string):Observable<any>{
+  deleteBlogById(blogId: string): Observable<any> {
     return this.http.delete<void>(`${this.baseUrl}/deleteBlog/${blogId}`);
   }
 
-  getBlogInfo(blogId:string){
-    return this.http.post<any>(`${this.baseUrl}/getBlogInfo`,{blogId});
+  getBlogInfo(blogId: string) {
+    return this.http.post<any>(`${this.baseUrl}/getBlogInfo`, { blogId });
   }
 
-  sendLikesToBlog(blogId:string,email:string){
-    return this.http.post<any>(`${this.baseUrl}/sendLikesToBlog`,{blogId,email});
+  sendLikesToBlog(blogId: string, email: string) {
+    return this.http.post<any>(`${this.baseUrl}/sendLikesToBlog`, {
+      blogId,
+      email,
+    });
   }
 
-  sendComment(blogId:string,email:string,content:string){
-    return this.http.post<any>(`${this.baseUrl}/sendComment`,{blogId,email,content});
+  sendComment(blogId: string, email: string, content: string) {
+    return this.http.post<any>(`${this.baseUrl}/sendComment`, {
+      blogId,
+      email,
+      content,
+    });
   }
 
-  delComment(commentId:string){
-    return this.http.post<any>(`${this.baseUrl}/deleteComment`,{commentId});
+  delComment(commentId: string) {
+    return this.http.post<any>(`${this.baseUrl}/deleteComment`, { commentId });
   }
-
 }
