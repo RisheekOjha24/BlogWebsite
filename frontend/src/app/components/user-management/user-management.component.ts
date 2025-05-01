@@ -43,7 +43,6 @@ export class UserManagementComponent implements OnInit {
     this.adminService.getAllUsers().subscribe({
       next: (userArray) => {
         this.users = userArray;
-        console.log(this.users);
         this.filteredUsers = userArray;
         this.updateUserLists();
       },
@@ -93,7 +92,7 @@ export class UserManagementComponent implements OnInit {
         next: () => {
           swalNotify('success', 'Message sent successfully');
           this.authService.socket.on('notification', (data) => {
-            console.log(data);
+            // console.log(data);
           });
         },
         error: (error) => {
