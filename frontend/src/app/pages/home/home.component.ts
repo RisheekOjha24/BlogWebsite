@@ -21,10 +21,13 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     const user = localStorage.getItem('user');
-    if (user) {
-      const userData = JSON.parse(user);
-      if (userData.isSuspended) this.router.navigateByUrl('/suspended');
-    }
+    try {
+      if (user) {
+        const userData = JSON.parse(user);
+        if (userData.isSuspended) this.router.navigateByUrl('/suspended');
+      }
+    } catch (error) {}
+
     this.fetchBlogs();
   }
 

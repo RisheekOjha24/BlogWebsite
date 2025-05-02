@@ -35,18 +35,18 @@ export class MyblogsComponent implements OnInit {
 
   ngOnInit(): void {
     const user = localStorage.getItem('user');
-    if (user) {
-      const userObj = JSON.parse(user);
-      this.username = userObj.name;
-      this.email = userObj.email;
-    }
-    
-    if(this.email!=null)
-    this.fetchBlogsbyEmail(this.email);
+    try {
+      if (user) {
+        const userObj = JSON.parse(user);
+        this.username = userObj.name;
+        this.email = userObj.email;
+      }
+    } catch (error) {}
+
+    if (this.email != null) this.fetchBlogsbyEmail(this.email);
   }
 
-  fetchBlogsbyEmail(email:string):void{
-       
+  fetchBlogsbyEmail(email: string): void {
     if (email) {
       this.blogService.getBlogsByEmail(email).subscribe({
         next: (data) => {
@@ -68,28 +68,30 @@ export class MyblogsComponent implements OnInit {
     this.router.navigateByUrl(`/viewBlog/${blogId}`);
   }
 
-  navigateToEdit(blogId:string):void{
-      this.router.navigateByUrl(`/editBlog/${blogId}`);
+  navigateToEdit(blogId: string): void {
+    this.router.navigateByUrl(`/editBlog/${blogId}`);
   }
 
-  async navigateToDelete(blogId:string):Promise<void>{
+  async navigateToDelete(blogId: string): Promise<void> {
+    const response = await swalAlert(
+      'question',
+      'Do you want to delete this blog ?',
+      'Click Ok to Proceed'
+    );
 
-    const response= await swalAlert('question',"Do you want to delete this blog ?","Click Ok to Proceed");
-    
-    if(!response.isConfirmed)return;
+    if (!response.isConfirmed) return;
 
     this.blogService.deleteBlogById(blogId).subscribe({
-      next:(res)=>{
-        swalNotify("success",res.msg);
-            this.blogs=this.blogs.filter((item)=>(blogId !== item._id));
-            this.filteredBlogs=this.blogs;
+      next: (res) => {
+        swalNotify('success', res.msg);
+        this.blogs = this.blogs.filter((item) => blogId !== item._id);
+        this.filteredBlogs = this.blogs;
       },
-      error:(err)=>{
+      error: (err) => {
         console.log(err);
-        swalNotify("error","Some error occured");
-      }
-    })
-
+        swalNotify('error', 'Some error occured');
+      },
+    });
   }
 
   //sorting and filtering code
@@ -116,8 +118,6 @@ export class MyblogsComponent implements OnInit {
   }
 
   animationCreated(animationItem: AnimationItem): void {
-     animationItem.setSpeed(2);
+    animationItem.setSpeed(2);
   }
-
-
 }

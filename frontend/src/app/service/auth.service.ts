@@ -34,9 +34,13 @@ export class AuthService {
 
   loadUserFromStorage(): void {
     const storedUser = localStorage.getItem('user');
-    if (storedUser) {
-      const user = JSON.parse(storedUser);
-      this.currentUser.next(user);
+    try {
+      if (storedUser) {
+        const user = JSON.parse(storedUser);
+        this.currentUser.next(user);
+      }
+    } catch (error) {
+      console.log('ERROR ', error);
     }
   }
 

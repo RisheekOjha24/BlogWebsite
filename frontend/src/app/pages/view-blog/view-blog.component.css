@@ -2,8 +2,8 @@
   font-size: 1.1rem;
   line-height: 1.6;
 }
-p{
-  font-family:Helvetica, sans-serif;
+p {
+  font-family: Helvetica, sans-serif;
   font-size: 18px;
 }
 .card-footer {
@@ -12,7 +12,7 @@ p{
 
 .card-title {
   font-weight: bolder;
-  font-family: "Roboto Slab",Helvetica, sans-serif;
+  font-family: "Roboto Slab", Helvetica, sans-serif;
   font-size: 42px;
   line-height: 1.2;
 }
@@ -23,12 +23,12 @@ p{
   margin-bottom: 10px;
 }
 
-.img-fluid{
-    margin:auto;
-    margin-bottom: 4rem;
-    margin-top: 1rem;
+.img-fluid {
+  margin: auto;
+  margin-bottom: 4rem;
+  margin-top: 1rem;
 }
-.btn-like-comment{
+.btn-like-comment {
   display: flex;
   position: absolute;
   flex-direction: column;
@@ -36,7 +36,7 @@ p{
   min-width: 30px;
   justify-content: space-between;
 }
-.like-btn{
+.like-btn {
   border: none;
   padding: 2px;
   background-color: white;
@@ -44,64 +44,64 @@ p{
   font-family: sans-serif;
   margin: 1rem;
 }
-.like-btn:hover{
+.like-btn:hover {
   cursor: pointer;
 }
-.like-btn>i{
-  margin-right:6px;
- }
+.like-btn > i {
+  margin-right: 6px;
+}
 
- .commnet-icon{
+.commnet-icon {
   font-size: 20px;
   cursor: pointer;
- }
+}
 
- #commentBox{
+#commentBox {
   margin-top: 2rem;
- }
- 
- .sendCommentBtn{
+}
+
+.sendCommentBtn {
   padding: 5px 20px;
   background-color: rgb(50, 131, 163);
   border: 0;
-  border-radius:6px;
+  border-radius: 6px;
   margin-top: 1rem;
   margin-bottom: 1rem;
   color: white;
- }
- 
- .sendCommentBtn:hover{
+}
+
+.sendCommentBtn:hover {
   transform: scale(1.02);
   filter: brightness(1.1);
- }
-  
- .sendCommentBtn:active{
+}
+
+.sendCommentBtn:active {
   transform: scale(1);
   filter: brightness(1);
- }
+}
 
- .eye-icon{
+.eye-icon {
   font-size: 20px;
   color: rgb(27, 109, 231);
   cursor: pointer;
 }
-.active-eye-icon{
-   color: rgb(74, 74, 216);
- }
+.active-eye-icon {
+  color: rgb(74, 74, 216);
+}
 
- .delComment{
+.delComment {
   font-size: 20px;
   color: red;
   cursor: pointer;
- }
- .delComment:hover{
+}
+.delComment:hover {
   transform: scale(1.1);
- }
+}
 
- .visibleComment{
+.visibleComment {
   display: flex;
   padding: 10px;
-  background-color: lemonchiffon;
+  background-color: #fbf0f0;
   justify-content: space-between;
   align-items: center;
- }
+}

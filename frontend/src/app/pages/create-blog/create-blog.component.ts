@@ -12,6 +12,7 @@ import { swalNotify } from '../../components/swalNotify';
 import { Router } from '@angular/router';
 import { swalAlert } from '../../components/swalAlert';
 import { BlogService } from '../../service/blog.service';
+import { AuthService } from '../../service/auth.service';
 
 @Component({
   selector: 'app-create-blog',
@@ -28,7 +29,8 @@ export class CreateBlogComponent implements OnInit {
   userInfo: string | null = null;
 
   router = inject(Router);
-  blogService=inject(BlogService);
+  blogService = inject(BlogService);
+  authService = inject(AuthService);
 
   constructor(private fb: FormBuilder, private http: HttpClient) {
     this.blogForm = this.fb.group({
@@ -54,22 +56,27 @@ export class CreateBlogComponent implements OnInit {
       this.imageUrl = URL.createObjectURL(file); // Display a preview
     }
   }
-  
+
   removeImage(): void {
     this.selectedFile = null;
-    this.imageUrl = null; 
-  
-    const fileInput = document.getElementById('imageUpload') as HTMLInputElement;
+    this.imageUrl = null;
+
+    const fileInput = document.getElementById(
+      'imageUpload'
+    ) as HTMLInputElement;
     if (fileInput) {
-      fileInput.value = ''; 
+      fileInput.value = '';
     }
   }
-  
+
   async onSubmit(): Promise<void> {
     const response = await swalAlert('question', 'sure you want to publish ?');
     if (!response.isConfirmed) return;
-
-    swalNotify('success', 'Your blog is sent for approval');
+    const isSuperAdmin = this.authService.currentUser.getValue().isSuperAdmin;
+    const message = isSuperAdmin
+      ? 'You blog is published'
+      : 'Your blog is sent for approval';
+    swalNotify('success', message);
 
     if (this.blogForm.valid) {
       const formData: any = new FormData(); // Define formData as any type
@@ -89,15 +96,15 @@ export class CreateBlogComponent implements OnInit {
       }
 
       this.blogService.createNewBlog(formData).subscribe({
-          next: (response) => {
-            console.log('Blog submitted successfully', response);
-            // Handle success response here (e.g., reset form, show a message)
-          },
-          error: (error) => {
-            console.error('Error submitting blog:', error);
-            // Handle error response here (e.g., show error message)
-          },
-        });
+        next: (response) => {
+          console.log('Blog submitted successfully', response);
+          // Handle success response here (e.g., reset form, show a message)
+        },
+        error: (error) => {
+          console.error('Error submitting blog:', error);
+          // Handle error response here (e.g., show error message)
+        },
+      });
 
       this.clearBlogContent();
     }
@@ -107,9 +114,11 @@ export class CreateBlogComponent implements OnInit {
     this.blogForm.reset();
     this.selectedFile = null;
     this.imageUrl = null;
-    const fileInput = document.getElementById('imageUpload') as HTMLInputElement;
+    const fileInput = document.getElementById(
+      'imageUpload'
+    ) as HTMLInputElement;
     if (fileInput) {
-      fileInput.value = ''; 
+      fileInput.value = '';
     }
   }
 }
